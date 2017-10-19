@@ -90,20 +90,27 @@ int main(int, char*[]) {
 		}
 
 		// UPDATE
-		playerRect.x += (playerTarget.x - playerRect.x) / 10;
-		playerRect.y += (playerTarget.y - playerRect.y) / 10;
-
+		//playerRect.x += (playerTarget.x - playerRect.x) / 10;
+		//playerRect.y += (playerTarget.y - playerRect.y) / 10;
+		frameTime++;
+		if (FPS / frameTime <= 9)
+		{
+			frameTime = 0;
+			playerRect.x += frameWidth;
+			if (playerRect.x >= textWidth) playerRect.x = 0;
+		}
 
 		// DRAW
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, bgTexture, nullptr, &bgRect);
 		SDL_RenderCopy(renderer, textTexture, nullptr, &textRect);
-		SDL_RenderCopy(renderer, playerTexture, nullptr, &playerRect);
-		SDL_RenderPresent(renderer);
+		//SDL_RenderCopy(renderer, playerTexture, nullptr, &playerRect);
 		//Background
 
 		//Animated Sprite
+		SDL_RenderCopy(renderer, playerTexture, &playerRect, &playerPosition);
 		SDL_RenderPresent(renderer);
+
 
 	}
 
