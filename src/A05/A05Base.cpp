@@ -7,6 +7,8 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
+#define FPS 60
+
 int main(int, char*[]) {
 
 	// --- INIT ---
@@ -30,11 +32,23 @@ int main(int, char*[]) {
 	if (bgTexture == nullptr)throw "No s'han pogut crear les textures";
 	SDL_Rect bgRect{ 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
-	SDL_Texture *playerTexture{ IMG_LoadTexture(renderer, "../../res/img/kintoun.png") };
-	if (playerTexture == nullptr) throw "Nos'han pogut crear les textures";
-	SDL_Rect playerRect{ 0, 0, 350, 189 };
+	//SDL_Texture *playerTexture{ IMG_LoadTexture(renderer, "../../res/img/kintoun.png") };
+	//if (playerTexture == nullptr) throw "Nos'han pogut crear les textures";
+	//SDL_Rect playerRect{ 0, 0, 350, 189 };
 	SDL_Rect playerTarget{ 0, 0, 100, 100 };
 	// --- Animated Sprite ---
+
+	SDL_Texture *playerTexture{ IMG_LoadTexture(renderer, "../../res/img/sp01.png") };
+	SDL_Rect playerRect, playerPosition;
+	int textWidth, textHeight, frameWidth, frameHeight;
+	SDL_QueryTexture(playerTexture, NULL, NULL, &textWidth, &textHeight);
+	frameWidth = textWidth / 6;
+	frameHeight = textHeight / 1;
+	playerPosition.x = playerPosition.y = 0;
+	playerRect.x = playerRect.y = 0;
+	playerPosition.h = playerRect.h = frameHeight;
+	playerPosition.w = playerRect.w = frameWidth;
+	int frameTime = 0;
 
 	// --- TEXT ---
 	TTF_Font *font{ TTF_OpenFont("../../res/ttf/saiyan.ttf", 80) };
