@@ -2,6 +2,8 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
+#include <time.h>
+#include <iostream>
 
 //Game general information
 #define SCREEN_WIDTH 800
@@ -18,6 +20,10 @@ int main(int, char*[]) {
 	if (TTF_Init() != 0) throw "No es pot inicialitzar SDL_ttf";
 	const Uint8 mixFlags{ MIX_INIT_MP3 | MIX_INIT_OGG };
 	if (!(Mix_Init(mixFlags) & mixFlags)) throw "Error:SDL_mixer init";
+	// ---TIIME---
+	clock_t lastTime = clock();
+	float timeDown = 10;
+	float deltaTime = 0;
 
 	// --- WINDOW ---
 	SDL_Window *window{ SDL_CreateWindow("SDL...", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN) };
@@ -90,6 +96,12 @@ int main(int, char*[]) {
 		}
 
 		// UPDATE
+		deltaTime = (clock() - lastTime);
+		lastTime = clock();
+		deltaTime /= CLOCKS_PER_SEC;
+		timeDown -= deltaTime;
+		std::cout << timeDown << std::endl;
+		if (timeDown <= 0) timeDown = 10;
 		//playerRect.x += (playerTarget.x - playerRect.x) / 10;
 		//playerRect.y += (playerTarget.y - playerRect.y) / 10;
 		frameTime++;
