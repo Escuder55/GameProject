@@ -1,3 +1,5 @@
+#include "Input.h"
+
 class Player
 {
 public:
