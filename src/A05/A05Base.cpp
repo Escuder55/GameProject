@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
-#include <time.h>
+//#include <time.h>
 #include <iostream>
 
 //Game general information
@@ -21,7 +21,7 @@ int main(int, char*[]) {
 	const Uint8 mixFlags{ MIX_INIT_MP3 | MIX_INIT_OGG };
 	if (!(Mix_Init(mixFlags) & mixFlags)) throw "Error:SDL_mixer init";
 	// ---TIIME---
-	clock_t lastTime = clock();
+	//clock_t lastTime = clock();
 	float timeDown = 10;
 	float deltaTime = 0;
 
@@ -110,9 +110,9 @@ int main(int, char*[]) {
 		}
 
 		// UPDATE
-		deltaTime = (clock() - lastTime);
-		lastTime = clock();
-		deltaTime /= CLOCKS_PER_SEC;
+		//deltaTime = (clock() - lastTime);
+		//lastTime = clock();
+		//deltaTime /= CLOCKS_PER_SEC;
 		timeDown -= deltaTime;
 		std::cout << timeDown << std::endl;
 		if (timeDown <= 0) timeDown = 10;
