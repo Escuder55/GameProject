@@ -1,4 +1,4 @@
-#include "Input.h"
+#include <SDL.h>
 
 class Player
 {
@@ -18,14 +18,14 @@ public:
 	};
 
 	Player();
-	Input waitForInput();
-	void update();
-	void putBomb();
+	void waitForInput(int numPlayer);
+	void upDate(Player::Input currentInput, int numPlayer);
 	void powerUp(Player::PowerUp myPowerUp);
 	void increaseScore(int scoreEvent);
 	void decreaseHealth();
 	int getPosX();
 	int getPosY();
+	int getLives();
 	void setVelocity(float currentVelocity);
 	~Player();
 
