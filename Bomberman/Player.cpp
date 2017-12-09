@@ -2,8 +2,24 @@
 
 
 
-Player::Player()
+Player::Player(int currentNumPlayer)
 {
+	numPlayer = currentNumPlayer;
+	velocity = 1.0;
+	score = 0;
+	canDropBomb = false;
+	invencibility = false;
+	
+	if (numPlayer == 1)
+	{
+		posX = 72;
+		posY = 152;
+	}
+	else
+	{
+		posX = 648;
+		posY = 632;
+	}
 }
 
 void Player::waitForInput(int numPlayer)
@@ -39,6 +55,7 @@ void Player::waitForInput(int numPlayer)
 			case SDLK_SPACE:
 				Player::upDate(Player::Input::BOMB, numPlayer);
 				break;
+
 			////// INPUT PLAYER 2 ///////
 			case SDLK_UP:
 				Player::upDate(Player::Input::UP, numPlayer);
@@ -60,7 +77,8 @@ void Player::waitForInput(int numPlayer)
 				Player::upDate(Player::Input::BOMB, numPlayer);
 				break;
 			
-			case SDL_KEYDOWN:	if (event.key.keysym.sym == SDLK_ESCAPE) isRunning = false; break;
+			case SDL_KEYDOWN:	if (event.key.keysym.sym == SDLK_ESCAPE) isRunning = false;
+				break;
 			default:;
 			}
 		}

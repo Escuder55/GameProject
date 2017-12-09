@@ -19,10 +19,18 @@ private:
 		HELMET,
 		NONE
 	};
+	enum class mapElements {
+		WALL,
+		WALLBREAKABLE,
+		NOTHING,
+		ROLLERSKATE,
+		HELMET
+	};
 	Player &player1;
 	Player &player2;
 	float time;
 	int numPlayer;
+	mapElements currentMap[13][15];
 
 
 };

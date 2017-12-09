@@ -17,7 +17,7 @@ public:
 		NONE
 	};
 
-	Player();
+	Player(int currentNumPlayer);
 	void waitForInput(int numPlayer);
 	void upDate(Player::Input currentInput, int numPlayer);
 	void powerUp(Player::PowerUp myPowerUp);
@@ -36,7 +36,7 @@ private:
 	float velocity;
 	int score;
 	int lives;
-	bool dropBomb;
+	bool canDropBomb;
 	bool invencibility;
 	int numPlayer;
 };
